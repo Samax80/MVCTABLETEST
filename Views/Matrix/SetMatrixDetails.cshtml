@@ -1,0 +1,190 @@
+﻿@model SibiliTest.Models.MatrixModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SetMatrixDetails</title>
+</head>
+
+<style>
+    /*description:
+        Here we use css in order to improve the GUI!(table ,cells)
+
+    */
+    table {
+        border-collapse: collapse;
+        border-style: groove;
+        border-width: 3px;
+        outline-style: double;
+        position: relative;
+        opacity: 0.5;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #75dc52;
+        color: white;
+        background-image: linear-gradient(red, yellow);
+        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    }
+
+    td:hover {
+        background-color: #dff7f6;
+        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    }
+</style>
+
+
+<body>
+    <div>
+        <div>
+
+
+            <h1>  Matrix Table    </h1>
+
+            <label> Matrix X dimentions:@Model.Xdimention - Matrix Y dimentions:@Model.Ydimention </label>
+            <br /> <br />
+            <label>The format you have selected is</label>:
+            @{//This switch will check for the format slected by the user and if there is no selection  the default value will be  Decimal.
+                switch (@Model.FormatNumber)
+                {
+                    case 0://Decimal
+                        <label>Decimal.</label>
+                        break;
+
+                    case 1://Binary
+                        <label>Binary.</label>
+                        break;
+
+                    case 2://Hex
+                        <label>Hex.</label>
+                        break;
+
+                    default:
+                        <label>Decimal.</label>
+                        break;
+
+                }
+
+            }
+
+        </div>
+    </div>
+
+    <table border="1">
+        >
+        <tr>
+            <th title='WELCOME TO MY  PROGRAM' style="border:2px rgb(0,0,0) ;">X</th>
+
+            @for (int h = 1; h <= @Model.Xdimention; ++h)
+            {
+
+                <th title='You are over the Horizontal line'> @h </th>
+            }
+
+
+        </tr>
+
+        @for (int VeticalNumber = 1; VeticalNumber <= @Model.Ydimention; ++VeticalNumber)//EXTERNAL LOOP VERTICAL
+        {
+
+            <tr>
+                <th title='You are over the vertical line'> @VeticalNumber </th>
+
+                @for (int HorizontalNumber = 1; HorizontalNumber <= Model.Xdimention; ++HorizontalNumber)//INTERNAL LOOP HORIZONTAL
+                {
+                    if ((HorizontalNumber * VeticalNumber) % 2 == 0)//even Numbers
+                    {
+                        Model.color = "'#8516e6'";
+                        Model.font = "'white'";
+
+                    }
+
+                    else //Odd numebers
+                    {
+                        Model.color = "'#FF66CC'";
+                        Model.font = "'black'";
+                    }
+
+                    //automatize Color
+
+
+
+                    {//This switch will check for the format slected by the user and if there is no selection  the default value will be  Decimal.
+                        switch (@Model.FormatNumber)
+
+                        {
+
+                            case 0://Decimal
+
+
+                                <td bgcolor=@Model.color title='  @VeticalNumber X @HorizontalNumber= @Model.ToDecimal((VeticalNumber) * (HorizontalNumber))'>
+
+
+                                    <font color=Model.font>  @Model.ToDecimal((VeticalNumber) * (HorizontalNumber))</font>
+
+                                </td>
+                                break;
+
+
+
+                            case 1://Binary
+
+                                <td bgcolor=@Model.color title=' @VeticalNumber X @HorizontalNumber= @Model.ToBinary((VeticalNumber) * (HorizontalNumber))'>
+
+
+                                    <font color=Model.font>  @Model.ToBinary((VeticalNumber) * (HorizontalNumber))</font>
+
+                                </td>
+                                break;
+
+                            case 2://Hex
+
+                                <td bgcolor=@Model.color title=' @VeticalNumber X @HorizontalNumber= @Model.ToHex((VeticalNumber) * (HorizontalNumber))'>
+
+
+                                    <font color=Model.font>  @Model.ToHex((VeticalNumber) * (HorizontalNumber))</font>
+
+                                </td>
+                                break;
+
+
+                            default:
+
+                                <td bgcolor=@Model.color title=' @VeticalNumber X @HorizontalNumber= @Model.ToDecimal((VeticalNumber) * (HorizontalNumber))'>
+
+
+                                    <font color=Model.font>  @Model.ToDecimal((VeticalNumber) * (HorizontalNumber))</font>
+
+                                </td>
+                                break;
+
+
+                        }
+                    }
+
+                }
+
+
+
+
+            </tr>
+        }
+    </table>
+    <form>
+        <br /> <br />
+        <br /> <br />
+        @**************Go back Button******************@
+        <input type="button" value="Go back!" onclick="history.back()">
+    </form>
+
+
+</body>
+</html>

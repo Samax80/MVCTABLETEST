@@ -1,0 +1,64 @@
+﻿@model SibiliTest.Models.MatrixModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetMatrixDetails</title>
+
+    <style>
+      
+            .slider:hover {
+                opacity: 0.8;
+            }
+                   
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <br /> <br />
+        -Please select your  matrix dimention values
+        <text>(default X and Y values:10) </text>
+
+    </div>------------------------------------------
+    <div>
+
+
+    </div>
+
+    <form action="SetMatrixDetails" method="post">
+        @**************SLIDERS*******************@
+        <div class="slidecontainer">
+            <label>-Y dimentions </label>
+            <input type="range" min="3" max="15" value="10" class="slider" id="myRange" name="Xdimention">
+            <label>-X dimentions </label>ew
+            <input type="range" min="3" max="15" value="10" class="slider" id="myRange" name="Ydimention">
+            @***********************************@
+
+            <div>
+                @**************Format Selection Gui*******************@
+                <label>-Select the format here: </label>
+                <text>(default is Decimal) </text>
+                <br /> <br />
+                <input type="radio" name="FormatNumber" value="0"> Decimal<br>
+                <input type="radio" name="FormatNumber" value="1"> Binary<br>
+                <input type="radio" name="FormatNumber" value="2"> Hex<br>
+                @*elizabeth was here JAJAJAJA*@
+
+
+            </div>
+
+
+        </div>
+
+        <br /> <br />
+        @**************Button*******************@
+        <input type="submit" value="Apply Changes" />
+    </form>
+
+
+</body>
+</html>
